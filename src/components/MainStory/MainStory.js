@@ -48,6 +48,10 @@ const Abstract = styled.p`
         -webkit-line-clamp: 16;
         margin-bottom: 72px;
     }
+
+    @media ${QUERIES.laptopAndUp} {
+        -webkit-line-clamp: 10;
+    }
 `;
 
 const Location = styled.span`
