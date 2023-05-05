@@ -34,23 +34,21 @@ const Header = () => {
                 </MainHeader>
             </MobileHeader>
             <DesktopHeader>
-                <Row>
-                    <LeftActions>
-                        <ActionGroup>
-                            <button>
-                                <Search size={24} />
-                            </button>
-                            <button>
-                                <Menu size={24} />
-                            </button>
-                        </ActionGroup>
-                    </LeftActions>
-                    <Logo />
-                    <RightActions>
-                        <SubscriptionButton>SUBSCRIBE</SubscriptionButton>
-                        <Link>Already a subscriber?</Link>
-                    </RightActions>
-                </Row>
+                <LeftActions>
+                    <ActionGroup>
+                        <button>
+                            <Search size={24} />
+                        </button>
+                        <button>
+                            <Menu size={24} />
+                        </button>
+                    </ActionGroup>
+                </LeftActions>
+                <Logo />
+                <RightActions>
+                    <SubscriptionButton>SUBSCRIBE</SubscriptionButton>
+                    <Link>Already a subscriber?</Link>
+                </RightActions>
             </DesktopHeader>
         </>
     );
@@ -62,27 +60,39 @@ const MobileHeader = styled.header`
     }
 `;
 
-const DesktopHeader = styled.header`
+const DesktopHeader = styled(MaxWidthWrapper)`
     display: none;
-    margin-bottom: 16px;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 72px;
     @media ${QUERIES.laptopAndUp} {
-        display: block;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
     }
 `;
 
 const LeftActions = styled.div``;
 const RightActions = styled.div`
-    align-self: end;
+    justify-self: end;
+    position: relative;
+    display: revert;
 `;
 
 const SubscriptionButton = styled(Button)`
     background-color: var(--color-primary);
-    margin-bottom: 8px;
 `;
 
 const Link = styled.a`
     color: var(--color-gray-900);
     text-decoration: underline;
+    font-size: 14px;
+    font-style: italic;
+
+    // take link out of flow, so button is centered
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
 `;
 
 const SuperHeader = styled.div`
@@ -116,6 +126,11 @@ const MainHeader = styled(MaxWidthWrapper)`
     justify-content: center;
     margin-top: 32px;
     margin-bottom: 48px;
+
+    @media ${QUERIES.tabletOnly} {
+        margin-top: 48px;
+        margin-bottom: 72px;
+    }
 `;
 
 export default Header;
